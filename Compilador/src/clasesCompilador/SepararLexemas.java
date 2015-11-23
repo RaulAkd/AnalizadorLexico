@@ -9,7 +9,7 @@ public class SepararLexemas {
 		int i=0;
 		String espacios="";
 		ArrayList<String> cadenaLexema= new ArrayList();
-		StringTokenizer st=new StringTokenizer(cadena," ;//,<>(){}=",true);
+		StringTokenizer st=new StringTokenizer(cadena," ;//,<>(){}[]+-*/%!&|=",true);
 		
 		while (st.hasMoreTokens())
 		{	
@@ -18,14 +18,6 @@ public class SepararLexemas {
 			//System.out.println(cadena.substring(i,i+1));
 			//i++;
 		}
-		for(i=0;i<cadenaLexema.size();i++)
-		{
-			if(cadenaLexema.equals(" "))
-			{
-				cadenaLexema.remove(i);
-			}
-		}
-		
 		return cadenaLexema;
 	}
 }
