@@ -98,24 +98,74 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		
 		if(a.equals("analizar"))
 		{
+			int j=0;
 			cadenaTexto=leer.leer(txtDireccion.getText());
 			areaSalida.append(cadenaTexto);
 			lexemasSeparados=(ArrayList<String>) separar.separar(cadenaTexto);
 			ClasificarLexemas clasifica=new ClasificarLexemas();
-			Lexema lexemas =new Lexema();
-			ArrayList<Lexema> lex=new ArrayList();
+			//Lexema lexemas =new Lexema();
+			GenerarArchivo nuevo = new GenerarArchivo();
+			//ArrayList<Lexema> lex=new ArrayList();
+			ArrayList<String> lexem=new ArrayList();
+			ArrayList<String> tokenClass=new ArrayList();
+			String auxiliar="";
+			String operadores[]={"++","--","&&","||",">=","<=","==","!=","//","/*","*/"};
+			int m=0;
 			//areaSalida.append("\nCadenas separadas\n");
 			for(int i=0;i<lexemasSeparados.size();i++)
 			{
 				//lexemaIdentificado.setLexema(lexema);
-				if(!(lexemasSeparados.get(i).equals(" ")))
+				if(!(lexemasSeparados.get(i).equals(" ")||lexemasSeparados.get(i).equals("\t")||lexemasSeparados.get(i).equals("\n")))
 				{
-					lexemas.setLexema(lexemasSeparados.get(i));
-					lexemas.setTokenClass(clasifica.clasificar(lexemasSeparados.get(i)));
-					lex.add(lexemas);
+					System.out.println("Diferente de vacio");
+					//lexemas.setLexema(lexemasSeparados.get(i));
+					lexem.add(lexemasSeparados.get(i));
+					auxiliar=lexemasSeparados.get(i);
+					if(lexemasSeparados.get(i).equals("+")||lexemasSeparados.get(i).equals("-")||lexemasSeparados.get(i).equals("&")||lexemasSeparados.get(i).equals("|")||lexemasSeparados.get(i).equals(">")||lexemasSeparados.get(i).equals("<")||lexemasSeparados.get(i).equals("=")||lexemasSeparados.get(i).equals("!")||lexemasSeparados.get(i).equals("/")||lexemasSeparados.get(i).equals("*"))
+					{
+						System.out.println("es algun operador");
+						auxiliar+=lexemasSeparados.get(i+1);
+						System.out.println(auxiliar);
+						while((j<operadores.length)&&!(auxiliar.equals(operadores[j])))
+						{
+							System.out.println("entraaaaaaaaaaaaaaaaa");
+							System.out.println(auxiliar+"  "+operadores[j]);
+							j++;
+						}
+						//i++;
+						if(j>=operadores.length)
+						{
+							System.out.println("no se encontro");
+							auxiliar=lexemasSeparados.get(i);
+							//i--;
+						}
+						
+						else
+						{
+							System.out.println("se encontro");
+							i++;
+						}
+					}
+					
+					
+					
+					//tokenClass.
+					tokenClass.add(clasifica.clasificar(auxiliar));
+					System.out.println("el token class es:"+tokenClass.get(m));
+					//lexemas.setTokenClass(clasifica.clasificar(auxiliar));
+					//lex.add(m, lexemas);;
+					//System.out.println("lo que se guarda en el obj"+lex.get(m).lexema+" "+lex.get(m).TokenClass);
+					//System.out.println(lexemas.getLexema()+" "+lexemas.getTokenClass());
+					j=0;
+					m++;
 				}
-				System.out.println(lexemasSeparados.get(i));
 			}
+			for(int n=0;n<lexem.size();n++)
+			{
+				System.out.println(lexem.get(n)+" "+tokenClass.get(n));
+			}
+			
+			nuevo.genera(lexem,tokenClass);
 		}
 		
 		if(a.equals("nuevo"))

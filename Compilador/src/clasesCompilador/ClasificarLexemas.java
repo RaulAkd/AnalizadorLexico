@@ -4,44 +4,264 @@ import java.util.ArrayList;
 
 public class ClasificarLexemas {
 
-	String operadoresAritmeticos[]={"+","-","*","/","%","++","--"};
-	String operadoresLogicos[]={"!","&&","||"};
-	String operadoresRelacionales[]={">",">=","<","<=","==","!="};
-	String operadoresPunteros[]={"&","*"};
-	String operadoresSecuencia[]={","};
-	String agrupadores[]={"{","}","(",")"};
-	String otros[]={"[","]"};
-	String palabrasReservadas[]={"","","","","","",""};
+	static String operadoresAritmeticos[]={"+","-","*","/","%","++","--"};
+	static String operadoresLogicos[]={"!","&&","||"};
+	static String operadoresRelacionales[]={">",">=","<","<=","==","!="};
+	static String operadoresPunteros[]={"&","*"};
+	static String operadoresSecuencia[]={",",";"};
+	static String agrupadores[]={"{","}","(",")"};
+	static String otros[]={"[","]"};
+	static String operadorAsignacion[]={"="};
+	static String palabrasReservadas[]={"asm","auto","bool","break","case","catch","char","class","const","const_cast","continue","default","delete","do","double","dynamic_cast","else","enum","explicit","extern","false","float","for","friend","goto","if","inline","int","long","main","mutable","namespace","new","operator","private","protected","public","register","reinterpret_cast","return","short","signed","sizeof","static","static_cast","struct","switch","template","this","throw","true","try","typedef","typeid","typename","union","unsigned","using","virtual","void","volatile","while"};
+	
 	
 	public String clasificar(String lexema)
-	{
+	{	
+		if(esOperadorAritmetico(lexema)==true)
+		{
+			return "operadorAritmetico";
+		}
 		
+		else if(esOperadorAsignacion(lexema)==true)
+		{
+			System.out.println("Si es igual");
+			return "operadorAsignacion";
+		}
+		/*else if(esOperadorLogico(lexema)==true)
+		{
+			return "operadorLogico";
+		}
 		
-		return "";
+		else if(esOperadorRelacional(lexema)==true)
+		{
+			return "operadorRelacional";
+		}
+		
+		else if(esOperadorPuntero(lexema)==true)
+		{
+			return "operadorPuntero";
+		}
+		
+		else if(esOperadorSecuencia(lexema)==true)
+		{
+			return "operadorSecuencia";
+		}
+		
+		else if(esAgrupador(lexema)==true)
+		{
+			return "agrupador";
+		}
+		
+		else if(esOperadorMatriz(lexema)==true)
+		{
+			return "operadorMatriz";
+		}
+		
+		else if(esPalabraReservada(lexema)==true)
+		{
+			return "palabraReservada";
+		}
+		
+		else if(esIdentificador(lexema)==true)
+		{
+			return "identificador";
+		}
+		
+		else if(esUnNumero(lexema)==true)
+		{
+			return "numero";
+		}
+*/		
+		else
+		{
+			return "error";
+		}
 	}
 	
-	public static boolean esIdentificador(String lexema)
+	public static boolean esOperadorAritmetico(String lexema)
 	{
-		return true;
+		int contador=0;
+		while((contador<operadoresAritmeticos.length)&&!(lexema.equals(operadoresAritmeticos[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresAritmeticos.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	public static boolean esPalabraResevada(String lexema)
+	public static boolean esOperadorAsignacion(String lexema)
 	{
-		return true;
+		int contador=0;
+		while((contador<operadorAsignacion.length)&&!(lexema.equals(operadorAsignacion[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadorAsignacion.length)
+		{
+			System.out.println("Ingresoo a =");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	/*public static boolean esOperadorLogico(String lexema)
+	{
+		int contador=0;
+		while((contador<operadoresLogicos.length)&&!(lexema.equals(operadoresLogicos[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresLogicos.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	public static boolean esUnNumero(String lexema)
+	public static boolean esOperadorRelacional(String lexema)
 	{
-		return true;
+		int contador=0;
+		while((contador<operadoresRelacionales.length)&&!(lexema.equals(operadoresRelacionales[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresRelacionales.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static boolean esOperadorPuntero(String lexema)
+	{
+		int contador=0;
+		while((contador<operadoresPunteros.length)&&!(lexema.equals(operadoresPunteros[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresPunteros.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static boolean esOperadorSecuencia(String lexema)
+	{
+		int contador=0;
+		while((contador<operadoresSecuencia.length)&&!(lexema.equals(operadoresSecuencia[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresSecuencia.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public static boolean esAgrupador(String lexema)
 	{
-		return true;
+		int contador=0;
+		while((contador<agrupadores.length)&&!(lexema.equals(agrupadores[contador])))
+		{
+			contador++;
+		}
+		if(contador<agrupadores.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	public static boolean esOperador(String lexema)
+	public static boolean esOperadorMatriz(String lexema)
 	{
-		return true;
+		int contador=0;
+		while((contador<otros.length)&&!(lexema.equals(otros[contador])))
+		{
+			contador++;
+		}
+		if(contador<otros.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
+	
+	public static boolean esPalabraReservada(String lexema)
+	{
+		int contador=0;
+		//System.out.println("entro palab res");
+		while((contador<palabrasReservadas.length)&&!(lexema.equals(palabrasReservadas[contador])))
+		{
+			//System.out.println(lexema+palabrasReservadas[contador]);
+			contador++;
+		}
+		if(contador<palabrasReservadas.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static boolean esIdentificador(String lexema)
+	{
+		boolean ok=lexema.matches("[a-z|A-Z].\\w.+");
+		if(ok==true)
+		{
+			return true;
+			//System.out.println("Correctoooooo");
+		}
+		else
+		{
+			return false;
+			//System.out.println("Errorrrrrrrrr");
+		}
+	}
+	
+	public static boolean esUnNumero(String lexema)
+	{
+		boolean ok=lexema.matches("[0-9]*");
+		return ok;
+		if(ok==true)
+		{
+			return true;
+			//System.out.println("Correctoooooo");
+		}
+		else
+		{
+			return false;
+			//System.out.println("Errorrrrrrrrr");
+		}
+	}*/
+	
 }
