@@ -12,7 +12,7 @@ public class ClasificarLexemas {
 	static String agrupadores[]={"{","}","(",")"};
 	static String otros[]={"[","]"};
 	static String operadorAsignacion[]={"="};
-	static String palabrasReservadas[]={"#include","asm","auto","bool","break","case","catch","char","class","cin","cout","const","const_cast","continue","default","delete","do","double","dynamic_cast","else","enum","explicit","extern","false","float","for","friend","goto","getch","if","inline","int","iostream","long","main","mutable","namespace","new","operator","private","protected","public","register","reinterpret_cast","return","short","signed","sizeof","static","static_cast","struct","switch","template","this","throw","true","try","typedef","typeid","typename","union","unsigned","using","virtual","void","volatile","while"};
+	static String palabrasReservadas[]={"#include","asm","auto","bool","break","case","catch","char","class","cin","cout","const","const_cast","continue","default","delete","do","double","dynamic_cast","else","enum","endl","explicit","extern","false","float","for","friend","goto","getch","if","inline","int","iostream","long","main","mutable","namespace","new","operator","private","protected","public","register","reinterpret_cast","return","short","signed","sizeof","static","static_cast","struct","switch","template","this","throw","true","try","typedef","typeid","typename","union","unsigned","using","virtual","void","volatile","while"};
 	
 	
 	public String clasificar(String lexema)

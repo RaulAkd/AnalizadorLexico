@@ -144,7 +144,7 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		
 		if(a.equals("nuevo"))
 		{   
-			
+			txtDireccion.setText("");
 		}	
 		
 
