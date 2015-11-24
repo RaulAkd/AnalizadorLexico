@@ -26,8 +26,6 @@ public class LeerArchivo
 				texto2+=texto+" ";
 				//System.out.println("leendo texto");
 			}
-			//System.out.println(texto);
-			//return texto;
 		}
 
 		//Si se causa un error al leer cae aqui

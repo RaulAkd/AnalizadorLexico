@@ -8,15 +8,11 @@ import javax.swing.*;
 
 public class InterfazGrafica extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private JLabel lblTitulo, lblDireccion;
 	private JTextField txtDireccion;
 	private JButton btmAnalizar, btmNuevo;
 	private JTextArea areaSalida;
 	JPanel panelSalida, panelIngresar, panelBotonModificar;
-	//ArbolB<String, String> st = new ArbolB<String, String>();
 	
 	public InterfazGrafica()
 	{
@@ -63,8 +59,6 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		panelBotones.add(btmNuevo);
 		panelSalida.add(areaSalida);
 		panelSalida.setVisible(true);
-		//panelSalida.setSize(480, 340);
-		//areaSalida.setSize(480, 240);
 		
 		JFrame frame=new JFrame("Analisis Lexico");
       frame.setLayout(new BoxLayout(frame.getContentPane(),BoxLayout.Y_AXIS));
@@ -76,17 +70,14 @@ public class InterfazGrafica extends JFrame implements ActionListener{
       frame.setSize(480, 120);
       frame.setVisible(true);  
       
-	} // FIN constructor PrimeraInterfase
+	} 
 
-	// programa principal para poder ejecutar como aplicación java
 	public static void main( String args[] )
 	{ 
 		InterfazGrafica application = new InterfazGrafica();
 		application.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 
-
-	// método que escucha los eventos que suceden en la GUI
 	public void actionPerformed(ActionEvent e)
 	{
 		
@@ -103,41 +94,32 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 			areaSalida.append(cadenaTexto);
 			lexemasSeparados=(ArrayList<String>) separar.separar(cadenaTexto);
 			ClasificarLexemas clasifica=new ClasificarLexemas();
-			//Lexema lexemas =new Lexema();
 			GenerarArchivo nuevo = new GenerarArchivo();
-			//ArrayList<Lexema> lex=new ArrayList();
 			ArrayList<String> lexem=new ArrayList();
 			ArrayList<String> tokenClass=new ArrayList();
 			String auxiliar="";
 			String operadores[]={"++","--","&&","||",">=","<=","==","!=","//","/*","*/"};
 			int m=0;
-			//areaSalida.append("\nCadenas separadas\n");
 			for(int i=0;i<lexemasSeparados.size();i++)
 			{
-				//lexemaIdentificado.setLexema(lexema);
 				if(!(lexemasSeparados.get(i).equals(" ")||lexemasSeparados.get(i).equals("\t")||lexemasSeparados.get(i).equals("\n")))
 				{
 					System.out.println("Diferente de vacio");
-					//lexemas.setLexema(lexemasSeparados.get(i));
 					lexem.add(lexemasSeparados.get(i));
 					auxiliar=lexemasSeparados.get(i);
 					if(lexemasSeparados.get(i).equals("+")||lexemasSeparados.get(i).equals("-")||lexemasSeparados.get(i).equals("&")||lexemasSeparados.get(i).equals("|")||lexemasSeparados.get(i).equals(">")||lexemasSeparados.get(i).equals("<")||lexemasSeparados.get(i).equals("=")||lexemasSeparados.get(i).equals("!")||lexemasSeparados.get(i).equals("/")||lexemasSeparados.get(i).equals("*"))
 					{
-						System.out.println("es algun operador");
 						auxiliar+=lexemasSeparados.get(i+1);
 						System.out.println(auxiliar);
 						while((j<operadores.length)&&!(auxiliar.equals(operadores[j])))
 						{
-							System.out.println("entraaaaaaaaaaaaaaaaa");
-							System.out.println(auxiliar+"  "+operadores[j]);
 							j++;
 						}
-						//i++;
+						
 						if(j>=operadores.length)
 						{
 							System.out.println("no se encontro");
 							auxiliar=lexemasSeparados.get(i);
-							//i--;
 						}
 						
 						else
@@ -146,16 +128,8 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 							i++;
 						}
 					}
-					
-					
-					
-					//tokenClass.
 					tokenClass.add(clasifica.clasificar(auxiliar));
 					System.out.println("el token class es:"+tokenClass.get(m));
-					//lexemas.setTokenClass(clasifica.clasificar(auxiliar));
-					//lex.add(m, lexemas);;
-					//System.out.println("lo que se guarda en el obj"+lex.get(m).lexema+" "+lex.get(m).TokenClass);
-					//System.out.println(lexemas.getLexema()+" "+lexemas.getTokenClass());
 					j=0;
 					m++;
 				}

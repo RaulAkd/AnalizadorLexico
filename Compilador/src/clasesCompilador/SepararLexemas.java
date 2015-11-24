@@ -6,17 +6,13 @@ public class SepararLexemas {
 	
 	public Object separar(String cadena)
 	{
-		int i=0;
 		String espacios="";
 		ArrayList<String> cadenaLexema= new ArrayList();
-		StringTokenizer st=new StringTokenizer(cadena," ;/=,<>(){}[]+-*/%!&|",true);
+		StringTokenizer st=new StringTokenizer(cadena," ;/=,<>(){}[]+-*/%!&|\n\t",true);
 		
 		while (st.hasMoreTokens())
 		{	
 			cadenaLexema.add(st.nextToken());
-			//cadenaLexemas.substring(i,i+1)=st.nextToken();
-			//System.out.println(cadena.substring(i,i+1));
-			//i++;
 		}
 		return cadenaLexema;
 	}

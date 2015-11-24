@@ -8,11 +8,11 @@ public class ClasificarLexemas {
 	static String operadoresLogicos[]={"!","&&","||"};
 	static String operadoresRelacionales[]={">",">=","<","<=","==","!="};
 	static String operadoresPunteros[]={"&","*"};
-	static String operadoresSecuencia[]={",",";"};
+	static String operadoresSecuencia[]={",",";","<<",">>"};
 	static String agrupadores[]={"{","}","(",")"};
 	static String otros[]={"[","]"};
 	static String operadorAsignacion[]={"="};
-	static String palabrasReservadas[]={"asm","auto","bool","break","case","catch","char","class","const","const_cast","continue","default","delete","do","double","dynamic_cast","else","enum","explicit","extern","false","float","for","friend","goto","if","inline","int","long","main","mutable","namespace","new","operator","private","protected","public","register","reinterpret_cast","return","short","signed","sizeof","static","static_cast","struct","switch","template","this","throw","true","try","typedef","typeid","typename","union","unsigned","using","virtual","void","volatile","while"};
+	static String palabrasReservadas[]={"#include","asm","auto","bool","break","case","catch","char","class","cin","cout","const","const_cast","continue","default","delete","do","double","dynamic_cast","else","enum","explicit","extern","false","float","for","friend","goto","getch","if","inline","int","iostream","long","main","mutable","namespace","new","operator","private","protected","public","register","reinterpret_cast","return","short","signed","sizeof","static","static_cast","struct","switch","template","this","throw","true","try","typedef","typeid","typename","union","unsigned","using","virtual","void","volatile","while"};
 	
 	
 	public String clasificar(String lexema)
@@ -26,35 +26,6 @@ public class ClasificarLexemas {
 		{
 			System.out.println("Si es igual");
 			return "operadorAsignacion";
-		}
-		/*else if(esOperadorLogico(lexema)==true)
-		{
-			return "operadorLogico";
-		}
-		
-		else if(esOperadorRelacional(lexema)==true)
-		{
-			return "operadorRelacional";
-		}
-		
-		else if(esOperadorPuntero(lexema)==true)
-		{
-			return "operadorPuntero";
-		}
-		
-		else if(esOperadorSecuencia(lexema)==true)
-		{
-			return "operadorSecuencia";
-		}
-		
-		else if(esAgrupador(lexema)==true)
-		{
-			return "agrupador";
-		}
-		
-		else if(esOperadorMatriz(lexema)==true)
-		{
-			return "operadorMatriz";
 		}
 		
 		else if(esPalabraReservada(lexema)==true)
@@ -71,7 +42,40 @@ public class ClasificarLexemas {
 		{
 			return "numero";
 		}
-*/		
+		
+		else if(esAgrupador(lexema)==true)
+		{
+			return "agrupador";
+		}
+		
+		else if(esOperadorSecuencia(lexema)==true)
+		{
+			return "operadorSecuencia";
+		}
+
+		else if(esOperadorLogico(lexema)==true)
+		{
+			return "operadorLogico";
+		}
+		
+		else if(esOperadorRelacional(lexema)==true)
+		{
+			return "operadorRelacional";
+		}
+		
+		else if(esOperadorPuntero(lexema)==true)
+		{
+			return "operadorPuntero";
+		}
+		
+		
+		
+		
+		else if(esOperadorMatriz(lexema)==true)
+		{
+			return "operadorMatriz";
+		}
+		
 		else
 		{
 			return "error";
@@ -112,7 +116,81 @@ public class ClasificarLexemas {
 			return false;
 		}
 	}
-	/*public static boolean esOperadorLogico(String lexema)
+	
+	public static boolean esPalabraReservada(String lexema)
+	{
+		int contador=0;
+		//System.out.println("entro palab res");
+		while((contador<palabrasReservadas.length)&&!(lexema.equals(palabrasReservadas[contador])))
+		{
+			//System.out.println(lexema+palabrasReservadas[contador]);
+			contador++;
+		}
+		if(contador<palabrasReservadas.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static boolean esIdentificador(String lexema)
+	{
+		boolean ok=lexema.matches("[a-z|A-Z]\\w.+");
+		if(ok==true)
+		{
+			return true;
+			//System.out.println("Correctoooooo");
+		}
+		else
+		{
+			return false;
+			//System.out.println("Errorrrrrrrrr");
+		}
+	}
+	
+	public static boolean esUnNumero(String lexema)
+	{
+		boolean ok=lexema.matches("[0-9]*");
+		return ok;
+	}
+	
+	public static boolean esAgrupador(String lexema)
+	{
+		int contador=0;
+		while((contador<agrupadores.length)&&!(lexema.equals(agrupadores[contador])))
+		{
+			contador++;
+		}
+		if(contador<agrupadores.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static boolean esOperadorSecuencia(String lexema)
+	{
+		int contador=0;
+		while((contador<operadoresSecuencia.length)&&!(lexema.equals(operadoresSecuencia[contador])))
+		{
+			contador++;
+		}
+		if(contador<operadoresSecuencia.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public static boolean esOperadorLogico(String lexema)
 	{
 		int contador=0;
 		while((contador<operadoresLogicos.length)&&!(lexema.equals(operadoresLogicos[contador])))
@@ -163,40 +241,6 @@ public class ClasificarLexemas {
 		}
 	}
 	
-	public static boolean esOperadorSecuencia(String lexema)
-	{
-		int contador=0;
-		while((contador<operadoresSecuencia.length)&&!(lexema.equals(operadoresSecuencia[contador])))
-		{
-			contador++;
-		}
-		if(contador<operadoresSecuencia.length)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public static boolean esAgrupador(String lexema)
-	{
-		int contador=0;
-		while((contador<agrupadores.length)&&!(lexema.equals(agrupadores[contador])))
-		{
-			contador++;
-		}
-		if(contador<agrupadores.length)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
 	public static boolean esOperadorMatriz(String lexema)
 	{
 		int contador=0;
@@ -212,56 +256,5 @@ public class ClasificarLexemas {
 		{
 			return false;
 		}
-	}
-	
-	public static boolean esPalabraReservada(String lexema)
-	{
-		int contador=0;
-		//System.out.println("entro palab res");
-		while((contador<palabrasReservadas.length)&&!(lexema.equals(palabrasReservadas[contador])))
-		{
-			//System.out.println(lexema+palabrasReservadas[contador]);
-			contador++;
-		}
-		if(contador<palabrasReservadas.length)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public static boolean esIdentificador(String lexema)
-	{
-		boolean ok=lexema.matches("[a-z|A-Z].\\w.+");
-		if(ok==true)
-		{
-			return true;
-			//System.out.println("Correctoooooo");
-		}
-		else
-		{
-			return false;
-			//System.out.println("Errorrrrrrrrr");
-		}
-	}
-	
-	public static boolean esUnNumero(String lexema)
-	{
-		boolean ok=lexema.matches("[0-9]*");
-		return ok;
-		if(ok==true)
-		{
-			return true;
-			//System.out.println("Correctoooooo");
-		}
-		else
-		{
-			return false;
-			//System.out.println("Errorrrrrrrrr");
-		}
-	}*/
-	
+	}	
 }
