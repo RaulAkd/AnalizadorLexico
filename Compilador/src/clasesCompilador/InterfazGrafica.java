@@ -1,10 +1,15 @@
 package clasesCompilador;
 
 import java.awt.*;
+
+import javax.swing.JFileChooser;
+
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class InterfazGrafica extends JFrame implements ActionListener{
 
@@ -91,7 +96,7 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		{
 			int j=0;
 			cadenaTexto=leer.leer(txtDireccion.getText());
-			areaSalida.append(cadenaTexto);
+			//areaSalida.append(cadenaTexto);
 			lexemasSeparados=(ArrayList<String>) separar.separar(cadenaTexto);
 			ClasificarLexemas clasifica=new ClasificarLexemas();
 			GenerarArchivo nuevo = new GenerarArchivo();
@@ -107,6 +112,18 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 					System.out.println("Diferente de vacio");
 					lexem.add(lexemasSeparados.get(i));
 					auxiliar=lexemasSeparados.get(i);
+					
+					/*if(lexemasSeparados.get(i).equals("\""))
+					{
+						i++;
+						while(!(lexemasSeparados.get(i).equals("\"")))
+						{
+							auxiliar+=lexemasSeparados.get(i+1);
+							i++;
+						}
+						auxiliar+=lexemasSeparados.get(i);
+						i++;
+					}*/
 					if(lexemasSeparados.get(i).equals("+")||lexemasSeparados.get(i).equals("-")||lexemasSeparados.get(i).equals("&")||lexemasSeparados.get(i).equals("|")||lexemasSeparados.get(i).equals(">")||lexemasSeparados.get(i).equals("<")||lexemasSeparados.get(i).equals("=")||lexemasSeparados.get(i).equals("!")||lexemasSeparados.get(i).equals("/")||lexemasSeparados.get(i).equals("*"))
 					{
 						auxiliar+=lexemasSeparados.get(i+1);
@@ -144,7 +161,35 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		
 		if(a.equals("nuevo"))
 		{   
-			txtDireccion.setText("");
+			JFileChooser explorador = new JFileChooser();
+
+			//Le cambiamos el titulo
+			explorador.setDialogTitle("Abrir documento...");
+			explorador.setFileFilter(new FileNameExtensionFilter("*.TXT", "txt"));
+			int seleccion = explorador.showDialog(panelIngresar, "Abrir!");
+			  
+			//analizamos la respuesta
+			switch(seleccion) {
+			case JFileChooser.APPROVE_OPTION:
+			 //seleccionó abrir
+			 break;
+
+			case JFileChooser.CANCEL_OPTION:
+			 //dio click en cancelar o cerro la ventana
+			 break;
+
+			case JFileChooser.ERROR_OPTION:
+			 //llega aqui si sucede un error
+			 break;
+			}
+			
+			//Podemos crear un File con lo seleccionado
+			File archivo = explorador.getSelectedFile();
+
+			//y guardar una ruta
+			String ruta = archivo.getPath();
+			txtDireccion.setText(ruta);
+			//txtDireccion.setText("");
 		}	
 		
 

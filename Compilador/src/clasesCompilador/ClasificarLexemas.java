@@ -108,7 +108,7 @@ public class ClasificarLexemas {
 		}
 		if(contador<operadorAsignacion.length)
 		{
-			System.out.println("Ingresoo a =");
+			//System.out.println("Ingresoo a =");
 			return true;
 		}
 		else
