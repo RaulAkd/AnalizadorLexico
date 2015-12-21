@@ -85,7 +85,10 @@ public class ClasificarLexemas {
 			return "operadorPuntero";
 		}
 		
-		
+		else if(esCadena(lexema)==true)
+		{
+			return "String";
+		}
 		
 		
 	/*	else if(esOperadorMatriz(lexema)==true)
@@ -257,6 +260,18 @@ public class ClasificarLexemas {
 		}
 	}
 	
+	public static boolean esCadena(String lexema)
+	{
+		System.out.println("Analizar cadeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeena");
+		if(lexema.substring(0, 1).equals("\"")&&lexema.substring(lexema.length()-1,lexema.length() ).equals("\""))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	/*public static boolean esOperadorMatriz(String lexema)
 	{
 		int contador=0;

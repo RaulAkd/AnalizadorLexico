@@ -8,7 +8,7 @@ public class SepararLexemas {
 	{
 		String espacios="";
 		ArrayList<String> cadenaLexema= new ArrayList();
-		StringTokenizer st=new StringTokenizer(cadena," ;/=,<>(){}[]+-*/%!&|\n\t",true);
+		StringTokenizer st=new StringTokenizer(cadena," ;/=,<>(){}[]+-*/%!&|\n\t\"",true);
 		
 		while (st.hasMoreTokens())
 		{	

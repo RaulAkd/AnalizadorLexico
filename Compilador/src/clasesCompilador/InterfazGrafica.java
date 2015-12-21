@@ -115,18 +115,27 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 					lexem.add(lexemasSeparados.get(i));
 					auxiliar=lexemasSeparados.get(i);
 					
-					/*if(lexemasSeparados.get(i).equals("\""))
+					if(lexemasSeparados.get(i).equals("\""))
 					{
+						System.out.println("cadenaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 						i++;
-						while(!(lexemasSeparados.get(i).equals("\"")))
+						while(!(lexemasSeparados.get(i).equals("\"")))//||!(lexemasSeparados.get(i).equals("\n")))
 						{
-							auxiliar+=lexemasSeparados.get(i+1);
+							System.out.println("Comapracion:"+i);
+							auxiliar+=lexemasSeparados.get(i);
+							System.out.println(lexemasSeparados.get(i));
 							i++;
+							System.out.println(auxiliar);
 						}
 						auxiliar+=lexemasSeparados.get(i);
-						i++;
-					}*/
-					if(lexemasSeparados.get(i).equals("+")||lexemasSeparados.get(i).equals("-")||lexemasSeparados.get(i).equals("&")||lexemasSeparados.get(i).equals("|")||lexemasSeparados.get(i).equals(">")||lexemasSeparados.get(i).equals("<")||lexemasSeparados.get(i).equals("=")||lexemasSeparados.get(i).equals("!")||lexemasSeparados.get(i).equals("/")||lexemasSeparados.get(i).equals("*"))
+						lexem.remove(lexem.size()-1);
+						lexem.add(auxiliar);
+						//tokenClass.add(clasifica.clasificar(auxiliar));
+						//i--;
+						System.out.println(auxiliar);
+					}
+					
+					else if(lexemasSeparados.get(i).equals("+")||lexemasSeparados.get(i).equals("-")||lexemasSeparados.get(i).equals("&")||lexemasSeparados.get(i).equals("|")||lexemasSeparados.get(i).equals(">")||lexemasSeparados.get(i).equals("<")||lexemasSeparados.get(i).equals("=")||lexemasSeparados.get(i).equals("!")||lexemasSeparados.get(i).equals("/")||lexemasSeparados.get(i).equals("*"))
 					{
 						auxiliar+=lexemasSeparados.get(i+1);
 						System.out.println(auxiliar);
@@ -145,21 +154,11 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 						{
 							//System.out.println("se encontro");
 							i++;
+							lexem.remove(lexem.size()-1);
+							lexem.add(auxiliar);
 						}
 					}
-					/*tokenTemporal=clasifica.clasificar(auxiliar);
-					if(!(tokenTemporal.equals("error")))
-					{
-						tokenClass.add(tokenTemporal);
-						//System.out.println("el token class es:"+tokenClass.get(m));
-						//m++;
-					}
-					else
-					{
-						System.out.println("Erroooooooooooooor");
-					}
-					j=0;*/
-					
+										
 					tokenClass.add(clasifica.clasificar(auxiliar));
 				//	System.out.println("el token class es:"+tokenClass.get(m));
 					j=0;
@@ -198,6 +197,7 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 			
 			if(analisisLexicoCorrecto==true)
 			{
+				System.out.println("Analisis lexico correcto");
 				nuevo.genera(lexem,tokenClass);
 			}
 			else
