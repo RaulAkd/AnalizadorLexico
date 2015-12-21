@@ -91,7 +91,9 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 		LeerArchivo leer =new LeerArchivo();
 		ArrayList<String> lexemasSeparados=new ArrayList();
 		SepararLexemas separar=new SepararLexemas();
-		
+		boolean analisisLexicoCorrecto=true;
+		int contadorLineas=1;
+		ArrayList<Integer> lineasError=new ArrayList();
 		if(a.equals("analizar"))
 		{
 			int j=0;
@@ -135,28 +137,77 @@ public class InterfazGrafica extends JFrame implements ActionListener{
 						
 						if(j>=operadores.length)
 						{
-							System.out.println("no se encontro");
+							//System.out.println("no se encontro");
 							auxiliar=lexemasSeparados.get(i);
 						}
 						
 						else
 						{
-							System.out.println("se encontro");
+							//System.out.println("se encontro");
 							i++;
 						}
 					}
+					/*tokenTemporal=clasifica.clasificar(auxiliar);
+					if(!(tokenTemporal.equals("error")))
+					{
+						tokenClass.add(tokenTemporal);
+						//System.out.println("el token class es:"+tokenClass.get(m));
+						//m++;
+					}
+					else
+					{
+						System.out.println("Erroooooooooooooor");
+					}
+					j=0;*/
+					
 					tokenClass.add(clasifica.clasificar(auxiliar));
-					System.out.println("el token class es:"+tokenClass.get(m));
+				//	System.out.println("el token class es:"+tokenClass.get(m));
 					j=0;
-					m++;
+					//m++;
+					if(tokenClass.get(tokenClass.size()-1).equals("error"))
+					{
+						System.out.println("Errorrrrrrrrrrrrrrr");
+						tokenClass.remove(tokenClass.size()-1);
+						lexem.remove(lexem.size()-1);
+						analisisLexicoCorrecto=false;
+						lineasError.add(contadorLineas);
+						//tokenClass.remove(m);
+						//lexem.remove(i);
+						//m--;
+						//i--;
+					}
+				}
+				else if(lexemasSeparados.get(i).equals("\n"))
+				{
+					System.out.println("Nueva lineaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+lexemasSeparados.get(i)+"lo k esssssssssssssssss");
+					contadorLineas++;
 				}
 			}
+			
+			/*for(int n=0;n<lineasError.size();n++)
+			{
+				if(lineasError.get(n+1).equals(lineasError.get(n)))
+				{
+					lineasError.remove(n+1);
+				}
+			}*/
 			for(int n=0;n<lexem.size();n++)
 			{
 				System.out.println(lexem.get(n)+" "+tokenClass.get(n));
 			}
 			
-			nuevo.genera(lexem,tokenClass);
+			if(analisisLexicoCorrecto==true)
+			{
+				nuevo.genera(lexem,tokenClass);
+			}
+			else
+			{
+				System.out.println("Errores lexicos");
+				for(int n=0;n<lineasError.size();n++)
+				{
+					System.out.println("Error en la linea:"+lineasError.get(n));
+				}
+			}
 		}
 		
 		if(a.equals("nuevo"))

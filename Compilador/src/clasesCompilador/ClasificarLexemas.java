@@ -19,9 +19,15 @@ public class ClasificarLexemas {
 	{	
 		if(esOperadorAritmetico(lexema)==true)
 		{
-			return "operadorAritmetico";
+			if(lexema.equalsIgnoreCase("++")||lexema.equalsIgnoreCase("--"))
+			{
+				return "operadorAritmeticoUnario";
+			}
+			else
+			{
+				return "operadorAritmetico";
+			}
 		}
-		
 		else if(esOperadorAsignacion(lexema)==true)
 		{
 			System.out.println("Si es igual");
@@ -30,7 +36,18 @@ public class ClasificarLexemas {
 		
 		else if(esPalabraReservada(lexema)==true)
 		{
-			return "palabraReservada";
+			if(lexema.equals("void")||lexema.equals("char")||lexema.equals("int")||lexema.equals("short")||lexema.equals("long")||lexema.equals("float")||lexema.equals("double"))
+			{
+				return "tipoDeDato";
+			}
+			else if(lexema.equals("if")||lexema.equals("else")||lexema.equals("else if")||lexema.equals("swtich")||lexema.equals("for")||lexema.equals("while")||lexema.equals("do"))
+			{
+				return "estructuraDeControl";
+			}
+			else
+			{
+				return "palabraReservada";
+			}
 		}
 		
 		else if(esIdentificador(lexema)==true)
@@ -71,11 +88,11 @@ public class ClasificarLexemas {
 		
 		
 		
-		else if(esOperadorMatriz(lexema)==true)
+	/*	else if(esOperadorMatriz(lexema)==true)
 		{
 			return "operadorMatriz";
 		}
-		
+		*/
 		else
 		{
 			return "error";
@@ -120,10 +137,9 @@ public class ClasificarLexemas {
 	public static boolean esPalabraReservada(String lexema)
 	{
 		int contador=0;
-		//System.out.println("entro palab res");
+		System.out.println("entro palab res");
 		while((contador<palabrasReservadas.length)&&!(lexema.equals(palabrasReservadas[contador])))
 		{
-			//System.out.println(lexema+palabrasReservadas[contador]);
 			contador++;
 		}
 		if(contador<palabrasReservadas.length)
@@ -241,7 +257,7 @@ public class ClasificarLexemas {
 		}
 	}
 	
-	public static boolean esOperadorMatriz(String lexema)
+	/*public static boolean esOperadorMatriz(String lexema)
 	{
 		int contador=0;
 		while((contador<otros.length)&&!(lexema.equals(otros[contador])))
@@ -256,5 +272,5 @@ public class ClasificarLexemas {
 		{
 			return false;
 		}
-	}	
+	}*/	
 }

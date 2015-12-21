@@ -23,7 +23,7 @@ public class LeerArchivo
 			while((texto=contenido.readLine())!=null)
 			{
 				//texto+=contenido.readLine();
-				texto2+=texto+" ";
+				texto2+=texto+"\n";
 				//System.out.println("leendo texto");
 			}
 		}
